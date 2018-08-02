@@ -33,16 +33,17 @@ class CatagoriesController extends Controller {
       }
 
       Catagories::create([
-        'name' => $data['name'],
+        'name' => $data['name'] ? $data['name'] : '',
         'description' => $data['description'],
+        'parent_id' => '0',
         'seo_url' => $data['seo_url'],
-        'meta_tag_title' => $data['meta_tag_title'],
-        'meta_tag_description' => $data['meta_tag_description'],
-        'meta_tag_keywords' => $data['meta_tag_keywords'],
-        'menu_column' => $data['menu_column'],
-        'on_menu' => $data['on_menu'],
-        'status' => $data['status'],
-        'sort_order' => $data['sort_order']
+        'meta_tag_title' => $data['meta_tag_title'] ? $data['meta_tag_title'] : '',
+        'meta_tag_description' => $data['meta_tag_description'] ? $data['meta_tag_description'] : '',
+        'meta_tag_keywords' => $data['meta_tag_keywords'] ? $data['meta_tag_keywords'] : '',
+        'menu_column' => $data['menu_column'] ? $data['menu_column'] : '',
+        'on_menu' => $data['on_menu'] ? $data['menu_column'] : '',
+        'status' => $data['status'] ? $data['status'] : '',
+        'sort_order' => $data['sort_order'] ? $data['sort_order'] : ''
       ]);
 
       return redirect('/categories');
