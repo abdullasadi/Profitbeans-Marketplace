@@ -130,7 +130,12 @@
     </div>
 
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!-- ckeditor -->
+    <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
+    <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/script-admin.js') }}"></script>
+
+    @yield('script')
   </body>
 </html>

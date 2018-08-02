@@ -17,4 +17,8 @@
 Route::get('/', 'DashboardController@base');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 //Route::get('logout', 'Auth\LoginController@logout')->name('logout');
+Route::get('/categories', 'CatagoriesController@index');
+Route::get('/add-category', 'CatagoriesController@add_category')->name('add_category');
+Route::post('/add-category', 'CatagoriesController@create');
+
 Auth::routes();
