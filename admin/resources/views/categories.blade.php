@@ -54,7 +54,7 @@
 <script type="text/javascript">
   @if(Session::has('success'))
   swal("Yehh!", "{{ Session::get('success') }}", "success");
-  @else
+  @elseif(Session::has('error'))
   swal("Ohh!", "{{ Session::get('error') }}", "error");
   @endif
 </script>
