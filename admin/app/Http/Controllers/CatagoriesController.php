@@ -13,6 +13,7 @@ class CatagoriesController extends Controller {
     }
 
     public function add_category() {
+      
       return view('add-category');
     }
 
@@ -32,7 +33,7 @@ class CatagoriesController extends Controller {
         $data['status'] = 0;
       }
 
-      Catagories::create([
+      $add = Catagories::create([
         'name' => $data['name'] ? $data['name'] : '',
         'description' => $data['description'],
         'parent_id' => '0',
@@ -41,10 +42,16 @@ class CatagoriesController extends Controller {
         'meta_tag_description' => $data['meta_tag_description'] ? $data['meta_tag_description'] : '',
         'meta_tag_keywords' => $data['meta_tag_keywords'] ? $data['meta_tag_keywords'] : '',
         'menu_column' => $data['menu_column'] ? $data['menu_column'] : '',
-        'on_menu' => $data['on_menu'] ? $data['menu_column'] : '',
-        'status' => $data['status'] ? $data['status'] : '',
+        'on_menu' => $data['on_menu'],
+        'status' => $data['status'],
         'sort_order' => $data['sort_order'] ? $data['sort_order'] : ''
       ]);
+
+      if($add) {
+        $request->session()->flash('success', 'Category has been added!');
+      } else {
+        $request->session()->flash('error', 'Categroy could not add!');
+      }
 
       return redirect('/categories');
     }

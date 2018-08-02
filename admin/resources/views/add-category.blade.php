@@ -65,8 +65,14 @@
       </div>
       <div class="row">
         <div class="input-field col s6">
-          <input name="menu_column" id="menu_column" type="text" class="validate">
-          <label for="menu_column">Menu Colunm</label>
+           <select name="menu_column">
+             <option value="" selected>Choose your option</option>
+             <option value="1">1</option>
+             <option value="2">2</option>
+             <option value="3">3</option>
+             <option value="4">4</option>
+           </select>
+           <label>Menu Column</label>
         </div>
         <div class="input-field col s6">
           <input name="sort_order" id="sort_order" type="text" class="validate">
@@ -106,6 +112,10 @@
 <script type="text/javascript">
   // Initialize ckeditor
   $('.ckeditor1').ckeditor();
+  // Initialize Meterialize select
+  $(document).ready(function() {
+    $('select').material_select();
+  });
 </script>
 
 @stop

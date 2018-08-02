@@ -8,7 +8,7 @@
         <div class="d-flex-space-between mb-3">
           <h5 class="card-title">New Products</h5>
 
-          <a class="btn waves-effect waves-light blue"><i class="material-icons left">add</i></a>
+          <a href="{{ route('add_category') }}" class="btn waves-effect waves-light blue"><i class="material-icons left">add</i></a>
         </div>
         <table class="striped centered">
           <thead>
@@ -46,5 +46,17 @@
     </div>
   </div>
 </div>
+
+@stop
+
+@section('script')
+
+<script type="text/javascript">
+  @if(Session::has('success'))
+  swal("Yehh!", "{{ Session::get('success') }}", "success");
+  @else
+  swal("Ohh!", "{{ Session::get('error') }}", "error");
+  @endif
+</script>
 
 @stop
