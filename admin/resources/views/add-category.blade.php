@@ -4,13 +4,14 @@
 <div class="container">
   <div class="row">
     <div class="col s12">
-      @if ($errors->has('title'))
+      @if ($errors->has('name'))
         <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('title') }}</strong>
+            <strong>{{ $errors->first('name') }}</strong>
         </span>
       @endif
     </div>
-    <form action="{{ action('CatagoriesController@create') }}" class="col s12" method="post">
+    <form action="{{ route('add_category') }}" class="col s12" method="post">
+      @csrf
       <div class="row">
         <div class="input-field col s12">
           <input name="name" id="name" type="text" class="validate">
