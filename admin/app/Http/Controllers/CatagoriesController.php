@@ -19,16 +19,32 @@ class CatagoriesController extends Controller {
     public function create(Request $request) {
       $data =  $request->validate([
         'name' => 'required',
-        'description' => 'required',
         'seo_url' => 'required',
-        'meta_tag_title' => 'required',
-        'meta_tag_description' => 'required',
-        'meta_tag_keywords' => 'required',
-        'menu_column' => 'required',
-        'sort_order' => 'required',
-        'status' => 'required',
-        'on_menu' => 'required',
+        'meta_tag_title' => 'required'
       ]);
-      return $data;
+      $data = $request->all();
+      $data['description'] = htmlspecialchars($data['description']);
+
+      if(!isset($data['on_menu'])) {
+        $data['on_menu'] = 0;
+      }
+      if(!isset($data['status'])) {
+        $data['status'] = 0;
+      }
+
+      Catagories::create([
+        'name' => $data['name'],
+        'description' => $data['description'],
+        'seo_url' => $data['seo_url'],
+        'meta_tag_title' => $data['meta_tag_title'],
+        'meta_tag_description' => $data['meta_tag_description'],
+        'meta_tag_keywords' => $data['meta_tag_keywords'],
+        'menu_column' => $data['menu_column'],
+        'on_menu' => $data['on_menu'],
+        'status' => $data['status'],
+        'sort_order' => $data['sort_order']
+      ]);
+
+      return redirect('/categories');
     }
 }

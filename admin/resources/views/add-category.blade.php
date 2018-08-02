@@ -3,19 +3,20 @@
 
 <div class="container">
   <div class="row">
-    <div class="col s12">
-      @if ($errors->has('name'))
-        <span class="invalid-feedback" role="alert">
-            <strong>{{ $errors->first('name') }}</strong>
-        </span>
-      @endif
-    </div>
+
     <form action="{{ route('add_category') }}" class="col s12" method="post">
       @csrf
       <div class="row">
         <div class="input-field col s12">
           <input name="name" id="name" type="text" class="validate">
           <label for="name">Name</label>
+        </div>
+        <div class="col s12">
+          @if ($errors->has('name'))
+            <span class="invalid-feedback red-text" role="alert">
+                <strong>{{ $errors->first('name') }}</strong>
+            </span>
+          @endif
         </div>
       </div>
       <div class="row">
@@ -29,11 +30,25 @@
           <input name="seo_url" id="seo_url" type="text" class="validate">
           <label for="seo_url">SEO URL</label>
         </div>
+        <div class="col s12">
+          @if ($errors->has('seo_url'))
+            <span class="invalid-feedback red-text" role="alert">
+                <strong>{{ $errors->first('seo_url') }}</strong>
+            </span>
+          @endif
+        </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
           <input name="meta_tag_title" id="meta_tag_title" type="text" class="validate">
           <label for="meta_tag_title">Meta Tag Title</label>
+        </div>
+        <div class="col s12">
+          @if ($errors->has('meta_tag_title'))
+            <span class="invalid-feedback red-text" role="alert">
+                <strong>{{ $errors->first('meta_tag_title') }}</strong>
+            </span>
+          @endif
         </div>
       </div>
       <div class="row">
@@ -79,7 +94,7 @@
         </div>
       </div>
       <div class="row">
-        <button type="submit" name="button" class="btn waves-effect waves-light blue">Save</button>
+        <button type="submit" class="btn waves-effect waves-light blue">Save</button>
       </div>
     </form>
   </div>
