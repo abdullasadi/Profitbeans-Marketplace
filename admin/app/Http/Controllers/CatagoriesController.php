@@ -49,23 +49,25 @@ class CatagoriesController extends Controller {
       return redirect('/categories');
     }
 
-    private function getChild($parentId) {
-      $cats = Catagories::where('id', $parentId)->get();
-      $catArr = [];
-      foreach ($cats as $cat) {
-        $catArr[$cat->name] = $this->getChild($cat->id);
-      }
-      return $catArr;
-    }
 
     public function ajax_request() {
-      return $this->getChild(3);
-      $all = Catagories::all();
-      $catArr = [];
-      foreach ($all as $l) {
-        $catName = $l->name;
-        $catArr['name'] = $this->getChild($l->id);
+      $categories = Catagories::with('children')->get();
+      $catAll = array();
+
+      foreach($categories as $cat){
+        if($cat->parent_id == '0'){
+          $catName = $cat->name;
+          $catArr['name'] = $catName;
+          array_push($catAll, $catArr);
+        }
+
+        foreach($cat->children as $catCh){
+            $catName = $cat->name .' > '. $catCh->name;
+            $catArr['name'] = $catName;
+            array_push($catAll, $catArr);
+        }
       }
-      return $catArr;
+
+      return $catAll;
     }
 }
