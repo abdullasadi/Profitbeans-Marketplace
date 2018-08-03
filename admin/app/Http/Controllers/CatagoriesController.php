@@ -13,7 +13,7 @@ class CatagoriesController extends Controller {
     }
 
     public function add_category() {
-      
+
       return view('add-category');
     }
 
@@ -23,35 +23,28 @@ class CatagoriesController extends Controller {
         'seo_url' => 'required',
         'meta_tag_title' => 'required'
       ]);
+
       $data = $request->all();
       $data['description'] = htmlspecialchars($data['description']);
 
-      if(!isset($data['on_menu'])) {
-        $data['on_menu'] = 0;
-      }
-      if(!isset($data['status'])) {
-        $data['status'] = 0;
-      }
+      $catObj = new Catagories;
+      $catObj->name = $data['name'] ? $data['name'] : '';
+      $catObj->description = $data['description'] ? $data['description'] : '';
+      $catObj->parent_id = '0';//$data['parent_id'] ? NULL : '0';
+      $catObj->seo_url = $data['seo_url'] ? $data['seo_url'] : '';
+      $catObj->meta_tag_title = $data['meta_tag_title'] ? $data['meta_tag_title'] : '';
+      $catObj->meta_tag_description = $data['meta_tag_description'] ? $data['meta_tag_description'] : '';
+      $catObj->meta_tag_keywords = $data['meta_tag_keywords'] ? $data['meta_tag_keywords'] : '';
+      $catObj->menu_column = $data['menu_column'] ? $data['menu_column'] : '0';
+      $catObj->on_menu = isset($data['on_menu']) ? '1' : '0';
+      $catObj->status = isset($data['status']) ? '1' : '0';
+      $catObj->sort_order = isset($data['sort_order']) ? '1' : '0';
 
-      $add = Catagories::create([
-        'name' => $data['name'] ? $data['name'] : '',
-        'description' => $data['description'],
-        'parent_id' => '0',
-        'seo_url' => $data['seo_url'],
-        'meta_tag_title' => $data['meta_tag_title'] ? $data['meta_tag_title'] : '',
-        'meta_tag_description' => $data['meta_tag_description'] ? $data['meta_tag_description'] : '',
-        'meta_tag_keywords' => $data['meta_tag_keywords'] ? $data['meta_tag_keywords'] : '',
-        'menu_column' => $data['menu_column'] ? $data['menu_column'] : '',
-        'on_menu' => $data['on_menu'],
-        'status' => $data['status'],
-        'sort_order' => $data['sort_order'] ? $data['sort_order'] : ''
-      ]);
-
-      if($add) {
+      if($catObj->save()) {
         $request->session()->flash('success', 'Category has been added!');
       } else {
         $request->session()->flash('error', 'Categroy could not add!');
-      }
+      }     
 
       return redirect('/categories');
     }
