@@ -21,10 +21,10 @@
     <nav class="blue darken-2">
       <div class="container">
         <div class="nav-wrapper">
-          <a href="/admin" class="brand-logo">DvrUn</a>
-          <a href="#" data-activates="side-nav" class="button-collapse show-on-large right">
+          <a href="#" data-activates="side-nav" class="button-collapse show-on-large ml-0">
             <i class="material-icons">menu</i>
           </a>
+          <a href="#" data-activates="side-nav" class="button-collapse show-on-large mr-2">Menu</a>
           <!-- Side Navigation -->
           <ul id="side-nav" class="side-nav">
             <li>
@@ -44,7 +44,7 @@
               </div>
             </li>
             <li>
-              <a href="/admin">
+              <a href="{{ route('dashboard') }}">
                 <i class="material-icons">dashboard</i>
                 Dashboard
               </a>
@@ -53,10 +53,7 @@
               <a href="#!">Products</a>
             </li>
             <li>
-              <a href="#!">Add Products</a>
-            </li>
-            <li>
-              <a href="#!">Categories</a>
+              <a href="{{ route('categories') }}">Categories</a>
             </li>
             <li>
               <a href="#!">User</a>
@@ -80,19 +77,19 @@
           <!-- Main Navigation -->
           <ul class="right">
             <li>
-              <a href="/admin">Dashboard</a>
+              <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
             <li>
               <a href="#!">Products</a>
             </li>
             <li>
-              <a href="#!">Add Product</a>
-            </li>
-            <li>
-              <a href="#!">Categories</a>
+              <a href="{{ route('categories') }}">Categories</a>
             </li>
             <li>
               <a href="#!">User</a>
+            </li>
+            <li>
+              <a href="{{ route('manufacturers') }}">Manufacturers</a>
             </li>
           </ul>
         </div>
