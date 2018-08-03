@@ -26,9 +26,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input name="seo_url" id="seo_url" type="text" class="validate">
           <label for="seo_url">SEO URL</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="parent_id" id="autocomplete-input" type="text" class="validate autocomplete">
+          <label for="autocomplete-input">Parent Category</label>
         </div>
         <div class="col s12">
           @if ($errors->has('seo_url'))
@@ -117,18 +121,29 @@
     $('select').material_select();
   });
 
-  $('input.autocomplete').autocomplete({
-    data: {
-      "Apple": null,
-      "Microsoft": null,
-      "Google": 'https://placehold.it/250x250'
-    },
-    limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-    onAutocomplete: function(val) {
-      // Callback function when value is autcompleted.
-    },
-    minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+  $(document).ready(function() {
+    $.ajax({
+      url: "{{ route('ajax_request') }}"
+    }).done(function( results ) {
+      var catName = {};
+      for(let result of results) {
+        catName[result.name] = null;
+      }
+      console.log(catName);
+      $('input.autocomplete').autocomplete({
+       data: catName,
+       limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
+       onAutocomplete: function(val) {
+         // Callback function when value is autcompleted.
+       },
+       minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+     });
+    });
   });
+
+
+
+
 </script>
 
 @stop
