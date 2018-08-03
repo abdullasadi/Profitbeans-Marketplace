@@ -20,6 +20,6 @@ Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/categories', 'CatagoriesController@index');
 Route::get('/add-category', 'CatagoriesController@add_category')->name('add_category');
 Route::post('/add-category', 'CatagoriesController@create');
-Route::get('/ajax-request', 'CatagoriesController@ajax_request')->name('ajax_request');
+Route::post('/ajax-request', 'CatagoriesController@ajax_request')->name('ajax_request');
 
 Auth::routes();

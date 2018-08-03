@@ -7,6 +7,11 @@ use App\Catagories;
 
 class CatagoriesController extends Controller {
 
+  public function __construct()
+  {
+      $this->middleware('auth');
+  }
+
     public function index() {
       $cat = Catagories::all();
       return view('categories', ['categories' => $cat]);
@@ -56,14 +61,14 @@ class CatagoriesController extends Controller {
 
       foreach($categories as $cat){
         if($cat->parent_id == '0'){
-          $catName = $cat->name;
-          $catArr['name'] = $catName;
+          $parentName = $cat->name;
+          $catArr = array('id'=> $cat->id, 'name'=> $cat->name,  'text'=> $parentName, 'image'=> null);
           array_push($catAll, $catArr);
         }
 
         foreach($cat->children as $catCh){
-            $catName = $cat->name .' > '. $catCh->name;
-            $catArr['name'] = $catName;
+            $childName = $cat->name .' > '. $catCh->name;
+            $catArr = array('id'=> $catCh->id, 'name'=> $catCh->name, 'text'=> $childName, 'image'=> null);
             array_push($catAll, $catArr);
         }
       }

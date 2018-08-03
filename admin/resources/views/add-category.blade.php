@@ -31,7 +31,8 @@
           <label for="seo_url">SEO URL</label>
         </div>
         <div class="input-field col s6">
-          <input name="parent_id" id="autocomplete-input" type="text" class="validate autocomplete">
+          <input type="hidden" id="parent_id" name="parent_id" value="">
+          <input name="parent" id="autocomplete-input" type="text" class="validate autocomplete">
           <label for="autocomplete-input">Parent Category</label>
         </div>
         <div class="col s12">
@@ -123,18 +124,21 @@
 
   $(document).ready(function() {
     $.ajax({
-      url: "{{ route('ajax_request') }}"
+      url: "{{ route('ajax_request') }}",
+      type: "POST",
+      data: {'_token': '{{ csrf_token() }}'}
     }).done(function( results ) {
       var catName = {};
       for(let result of results) {
-        catName[result.name] = null;
+        catName[result.text] = {id:result.id, text:result.text, image: null};
       }
-      console.log(catName);
+
+
       $('input.autocomplete').autocomplete({
        data: catName,
-       limit: 20, // The max amount of results that can be shown at once. Default: Infinity.
-       onAutocomplete: function(val) {
-         // Callback function when value is autcompleted.
+       onAutocomplete: function() {
+          var id = $('input.autocomplete').attr('data-id');
+          console.log(id);
        },
        minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
      });
