@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
 
-    <form action="{{ route('add_category') }}" class="col s12" method="post">
+    <form action="{{ route('add_category') }}" class="col s12" method="post" enctype="multipart/form-data">
       @csrf
       <div class="row">
         <div class="input-field col s12">
@@ -59,6 +59,11 @@
               <span>File</span>
               <input type="file" name="img">
             </div>
+            @if ($errors->has('img'))
+              <span class="invalid-feedback red-text" role="alert">
+                  <strong>{{ $errors->first('img') }}</strong>
+              </span>
+            @endif
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
             </div>

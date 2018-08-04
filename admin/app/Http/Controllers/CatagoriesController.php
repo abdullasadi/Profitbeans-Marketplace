@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Catagories;
+use Config;
 
 class CatagoriesController extends Controller {
 
@@ -18,6 +19,7 @@ class CatagoriesController extends Controller {
   }
 
   public function add_category() {
+    //return Config::get('app.image_path');
     return view('add-category');
   }
 
@@ -26,8 +28,15 @@ class CatagoriesController extends Controller {
       'name' => 'required',
       'seo_url' => 'required',
       'meta_tag_title' => 'required',
-      'img' => 'required|image|mimes:jpg,jpeg,png,gif'
+      'img' => 'image|mimes:jpg,jpeg,png,gif'
     ]);
+
+    if ($request->hasFile('img')) {
+      $image = $request->file('img');
+      $name = $image->getClientOriginalName();
+      $destinationPath = Config::get('app.image_path').'catalog/';
+      $image->move($destinationPath, $name);
+    }
 
     $data = $request->all();
     $data['description'] = htmlspecialchars($data['description']);
@@ -44,6 +53,7 @@ class CatagoriesController extends Controller {
     $catObj->on_menu = isset($data['on_menu']) ? '1' : '0';
     $catObj->status = isset($data['status']) ? '1' : '0';
     $catObj->sort_order = isset($data['sort_order']) ? '1' : '0';
+    $catObj->image = $name ? 'catalog/'.$name : 'default';
 
     if($catObj->save()) {
       $request->session()->flash('success', 'Category has been added!');
