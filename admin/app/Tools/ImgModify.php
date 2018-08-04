@@ -13,7 +13,6 @@ public function resize($filename, $width, $height) {
   }
   $extension = pathinfo($filename, PATHINFO_EXTENSION);
 
-
   $old_image = $filename;
   $new_image = Config::get('iamge_path').'cache/' . substr($filename, 0, strrpos($filename, '.')) . '-' . $width . 'x' . $height . '.' . $extension;
 

@@ -143,32 +143,26 @@
       type: "POST",
       data: {'_token': '{{ csrf_token() }}'}
     }).done(function( results ) {
+      console.log(results);
       $(document).ready(function() {
       $('.modal').modal();
       $('select').material_select();
       var catName = [];
       for(let result of results) {
-        catName.push({id:result.id, text:result.name, img: null});
+        catName.push({id:result.id, text:result.name, img: result.image});
       }
 
-      console.log(catName);
+
 
       $('input.autocomplete').autocomplete2({
-          data: catName
+          data: catName,
         });
       });
-
-     //
-     //
-     //  $('input.autocomplete').autocomplete({
-     //   data: catName,
-     //   onAutocomplete: function() {
-     //      var id = $('input.autocomplete').attr('data-id');
-     //      console.log(id);
-     //   },
-     //   minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-     // });
     });
+
+
+
+
   });
 
 

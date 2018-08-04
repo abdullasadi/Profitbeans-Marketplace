@@ -5750,8 +5750,10 @@ Materialize.toast = function (message, displayLength, className, completeCallbac
 
           // Set input value
           $autocomplete.on('click', 'li', function () {
+            //$input.val($(this).text().trim());
             $input.val($(this).text().trim());
             $input.data('id', $(this).data('id'));
+            $('#parent_id').val($input.data('id'));
             $input.trigger('change');
             console.log($input.data('id'));
             $autocomplete.empty();

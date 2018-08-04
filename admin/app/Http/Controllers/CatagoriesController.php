@@ -74,13 +74,13 @@ class CatagoriesController extends Controller {
     foreach($categories as $cat){
       if($cat->parent_id == '0'){
         $parentName = $cat->name;
-        $catArr = array('id'=> $cat->id, 'name'=> $cat->name,  'text'=> $parentName, 'image'=> null);
+        $catArr = array('id'=> $cat->id, 'name'=> $cat->name,  'text'=> $parentName, 'image'=> ImgModify::resize($cat->image, 40, 40));
         array_push($catAll, $catArr);
       }
 
       foreach($cat->children as $catCh){
           $childName = $cat->name .' > '. $catCh->name;
-          $catArr = array('id'=> $catCh->id, 'name'=> $catCh->name, 'text'=> $childName, 'image'=> null);
+          $catArr = array('id'=> $catCh->id, 'name'=> $catCh->name, 'text'=> $childName, 'image'=> ImgModify::resize($catCh->image, 40, 40));
           array_push($catAll, $catArr);
       }
     }

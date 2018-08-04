@@ -26,9 +26,9 @@
             @foreach($categories as $category)
             @php
               if($category->image == 'default'){
-                $image = ImgModify::resize('default.png', 40, 40);
+                $image = ImgModify::resize('default.png', 35, 35);
               }else{
-                $image = ImgModify::resize($category->image, 40, 40);
+                $image = ImgModify::resize($category->image, 35, 35);
               }
             @endphp
             <tr class="less-padding-tr">
