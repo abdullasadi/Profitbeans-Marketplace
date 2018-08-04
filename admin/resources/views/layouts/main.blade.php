@@ -80,7 +80,7 @@
               <a href="{{ route('dashboard') }}">Dashboard</a>
             </li>
             <li>
-              <a href="#!">Products</a>
+              <a href="{{ route('products') }}">Products</a>
             </li>
             <li>
               <a href="{{ route('categories') }}">Categories</a>

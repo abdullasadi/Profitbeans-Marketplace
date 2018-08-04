@@ -12,6 +12,9 @@ body {
 .ml-0 {
   margin-right: 0 !important;
 }
+.mt-0 {
+  margin-top: 0px !important;
+}
 .mr-2 {
   margin-left: 10px !important;
 }
@@ -154,4 +157,30 @@ i.left {
 .d-flex-space-between {
   display: flex;
   justify-content: space-between;
+}
+
+
+/*================================================================
+                        Materialize Table
+==================================================================*/
+.without-shadow {
+  box-shadow: none;
+}
+
+.action-btn {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.br-none {
+  border-radius: 0px !important;
+  font-weight: 400;
+}
+
+.less-padding-tr td img {
+  width: 35px;
+}
+
+.less-padding-tr td {
+  padding: 5px 2px 5px 2px;
 }
