@@ -25,7 +25,8 @@ class CatagoriesController extends Controller {
     $data =  $request->validate([
       'name' => 'required',
       'seo_url' => 'required',
-      'meta_tag_title' => 'required'
+      'meta_tag_title' => 'required',
+      'img' => 'required|image|mimes:jpg,jpeg,png,gif'
     ]);
 
     $data = $request->all();

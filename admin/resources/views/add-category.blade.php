@@ -44,16 +44,26 @@
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input name="meta_tag_title" id="meta_tag_title" type="text" class="validate">
           <label for="meta_tag_title">Meta Tag Title</label>
-        </div>
-        <div class="col s12">
           @if ($errors->has('meta_tag_title'))
             <span class="invalid-feedback red-text" role="alert">
                 <strong>{{ $errors->first('meta_tag_title') }}</strong>
             </span>
           @endif
+        </div>
+        <div class="col s6">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file" name="img">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
+
         </div>
       </div>
       <div class="row">

@@ -42,8 +42,15 @@
           @endif
         </div>
         <div class="input-field col s6">
-          <input name="image" id="image" type="text" class="validate">
-          <label for="image">Image</label>
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file" name="image">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text">
+            </div>
+          </div>
           @if ($errors->has('image'))
             <span class="invalid-feedback red-text" role="alert">
                 <strong>{{ $errors->first('image') }}</strong>
