@@ -81,14 +81,14 @@
         context:this,
         data: {'_token': '{{ csrf_token() }}', 'type': 'onMenuChange', 'id': id, 'value': value}
       }).done(function(results) {
-        if(value == '0') {
+        if(results.on_menu == '1') {
           $(this).attr('data-value', '1');
           $(this).html('<a class="btn-floating btn-large waves-effect waves-light green on-off-btn on-menu-change"><span>  </span></a>');
         } else {
           $(this).attr('data-value', '0');
           $(this).html('<a class="btn-floating btn-large waves-effect waves-light red on-off-btn on-menu-change"><span>  </span></a>');
         }
-        //console.log(results);
+        console.log(results);
       });
     });
   })
