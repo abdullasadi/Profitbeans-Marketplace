@@ -143,20 +143,31 @@
       type: "POST",
       data: {'_token': '{{ csrf_token() }}'}
     }).done(function( results ) {
-      var catName = {};
+      $(document).ready(function() {
+      $('.modal').modal();
+      $('select').material_select();
+      var catName = [];
       for(let result of results) {
-        catName[result.text] = {id:result.id, text:result.text, image: null};
+        catName.push({id:result.id, text:result.name, img: null});
       }
 
+      console.log(catName);
 
-      $('input.autocomplete').autocomplete({
-       data: catName,
-       onAutocomplete: function() {
-          var id = $('input.autocomplete').attr('data-id');
-          console.log(id);
-       },
-       minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
-     });
+      $('input.autocomplete').autocomplete2({
+          data: catName
+        });
+      });
+
+     //
+     //
+     //  $('input.autocomplete').autocomplete({
+     //   data: catName,
+     //   onAutocomplete: function() {
+     //      var id = $('input.autocomplete').attr('data-id');
+     //      console.log(id);
+     //   },
+     //   minLength: 1, // The minimum length of the input for the autocomplete to start. Default: 1.
+     // });
     });
   });
 

@@ -66,7 +66,7 @@
             </li>
             <li>
               <a class="waves-effect" href="{{ route('logout') }}" onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>             
+              document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
 
               <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
@@ -135,9 +135,10 @@
     <!-- ckeditor -->
     <script src="https://cdn.ckeditor.com/4.9.2/standard/ckeditor.js"></script>
     <script type="text/javascript" src="{{ asset('js/jquery.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <!-- <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script> -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
+    <script type="text/javascript" src="{{ asset('js/materialize09.js') }}"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/m-autocomplete.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/script-admin.js') }}"></script>
 
     @yield('script')
