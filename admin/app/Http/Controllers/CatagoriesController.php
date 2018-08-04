@@ -89,14 +89,20 @@ class CatagoriesController extends Controller {
       }
 
       return $catAll;
+
     } elseif($rq['type'] == 'onMenuChange') {
       $updateMenu = Catagories::find($rq['id']);
-
+      $updateMenu->on_menu = $rq['value'] == '1' ? '0' : '1';
       if($updateMenu) {
         if($updateMenu->save()) {
           return $updateMenu;
         }
       }
     }
+
+
   }
+
+
+
 }
