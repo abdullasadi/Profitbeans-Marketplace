@@ -8,12 +8,15 @@ use Config;
 
 class ManufacturersController extends Controller {
 	public function index() {
-		$mans = Manufacturers::all();
-		return view('manufacturers', ['manufacturers' => $mans]);
+		$manufacturers = Manufacturers::all();
+		return view('manufacturers', ['manufacturers' => $manufacturers]);
 	}
+
+
 	public function addManufacturers() {
 		return view('add-manufacturer');
 	}
+
 
 	public function create(Request $request) {
 		$data = $request->validate([

@@ -22,9 +22,16 @@
 
           <tbody>
             @foreach ($manufacturers as $manufacturer)
+            @php
+              if($manufacturer->image == 'default'){
+                $image = ImgModify::resize('default.png', 35, 35);
+              }else{
+                $image = ImgModify::resize($manufacturer->image, 35, 35);
+              }
+            @endphp
             <tr class="less-padding-tr">
               <td>
-                <img src="http://via.placeholder.com/150x150" alt="placholder">
+                <img src="{{ $image }}" alt="placholder">
               </td>
               <td>{{ $manufacturer->name }}</td>
               <td>{{ $manufacturer->sort_order }}</td>

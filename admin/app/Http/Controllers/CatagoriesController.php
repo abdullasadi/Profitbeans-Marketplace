@@ -46,7 +46,7 @@ class CatagoriesController extends Controller {
     $catObj = new Catagories;
     $catObj->name = $data['name'] ? $data['name'] : '';
     $catObj->description = $data['description'] ? $data['description'] : '';
-    $catObj->parent_id = '0';//$data['parent_id'] ? NULL : '0';
+    $catObj->parent_id = $data['parent_id'] ? $data['parent_id'] : '0';
     $catObj->seo_url = $data['seo_url'] ? $data['seo_url'] : '';
     $catObj->meta_tag_title = $data['meta_tag_title'] ? $data['meta_tag_title'] : '';
     $catObj->meta_tag_description = $data['meta_tag_description'] ? $data['meta_tag_description'] : '';
