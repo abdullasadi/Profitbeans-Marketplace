@@ -26,7 +26,7 @@
             @foreach($categories as $category)
             <tr class="less-padding-tr">
               <td>
-                <img src="{{ asset($category->image) }}" alt="placholder">
+                <img src="{{ Config::get('app.image_path').$category->image }}" alt="placholder">
               </td>
               <td>{{ $category->name }}</td>
               <td>{{ $category->sort_order }}</td>
