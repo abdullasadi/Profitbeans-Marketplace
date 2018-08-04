@@ -149,7 +149,7 @@
       $('select').material_select();
       var catName = [];
       for(let result of results) {
-        catName.push({id:result.id, text:result.name, img: result.image});
+        catName.push({id:result.id, text:result.text, img: result.image});
       }
 
 
