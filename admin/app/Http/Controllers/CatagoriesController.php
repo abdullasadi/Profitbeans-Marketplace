@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Catagories;
 use Config;
+use ImgModify;
 
 class CatagoriesController extends Controller {
 
@@ -14,12 +15,11 @@ class CatagoriesController extends Controller {
   }
 
   public function index() {
-    $cat = Catagories::all();
-    return view('categories', ['categories' => $cat]);
+    $allCagetoris = Catagories::all();
+    return view('categories', ['categories' => $allCagetoris]);
   }
 
   public function add_category() {
-    //return Config::get('app.image_path');
     return view('add-category');
   }
 

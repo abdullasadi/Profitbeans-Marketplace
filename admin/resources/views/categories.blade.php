@@ -24,9 +24,16 @@
 
           <tbody>
             @foreach($categories as $category)
+            @php
+              if($category->image == 'default'){
+                $image = ImgModify::resize('default.png', 40, 40);
+              }else{
+                $image = ImgModify::resize($category->image, 40, 40);
+              }
+            @endphp
             <tr class="less-padding-tr">
               <td>
-                <img src="{{ Config::get('app.image_path').$category->image }}" alt="placholder">
+                <img src="{{ $image }}" alt="placholder">
               </td>
               <td>{{ $category->name }}</td>
               <td>{{ $category->sort_order }}</td>
