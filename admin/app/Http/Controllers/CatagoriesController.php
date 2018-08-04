@@ -67,24 +67,36 @@ class CatagoriesController extends Controller {
   }
 
 
-  public function ajax_request() {
-    $categories = Catagories::with('children')->get();
-    $catAll = array();
 
-    foreach($categories as $cat){
-      if($cat->parent_id == '0'){
-        $parentName = $cat->name;
-        $catArr = array('id'=> $cat->id, 'name'=> $cat->name,  'text'=> $parentName, 'image'=> ImgModify::resize($cat->image, 40, 40));
-        array_push($catAll, $catArr);
+  public function ajax_request(Request $request) {
+    $rq = $request->all();
+    if($rq['type'] == "autocomplete") {
+      $categories = Catagories::with('children')->get();
+      $catAll = array();
+
+      foreach($categories as $cat){
+        if($cat->parent_id == '0'){
+          $parentName = $cat->name;
+          $catArr = array('id'=> $cat->id, 'name'=> $cat->name,  'text'=> $parentName, 'image'=> ImgModify::resize($cat->image, 40, 40));
+          array_push($catAll, $catArr);
+        }
+
+        foreach($cat->children as $catCh){
+            $childName = $cat->name .' > '. $catCh->name;
+            $catArr = array('id'=> $catCh->id, 'name'=> $catCh->name, 'text'=> $childName, 'image'=> ImgModify::resize($catCh->image, 40, 40));
+            array_push($catAll, $catArr);
+        }
       }
 
-      foreach($cat->children as $catCh){
-          $childName = $cat->name .' > '. $catCh->name;
-          $catArr = array('id'=> $catCh->id, 'name'=> $catCh->name, 'text'=> $childName, 'image'=> ImgModify::resize($catCh->image, 40, 40));
-          array_push($catAll, $catArr);
+      return $catAll;
+    } elseif($rq['type'] == 'onMenuChange') {
+      $updateMenu = Catagories::find($rq['id']);
+
+      if($updateMenu) {
+        if($updateMenu->save()) {
+          return $updateMenu;
+        }
       }
     }
-
-    return $catAll;
   }
 }

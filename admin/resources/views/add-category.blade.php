@@ -141,7 +141,7 @@
     $.ajax({
       url: "{{ route('ajax_request') }}",
       type: "POST",
-      data: {'_token': '{{ csrf_token() }}'}
+      data: {'_token': '{{ csrf_token() }}', 'type': 'autocomplete'}
     }).done(function( results ) {
       console.log(results);
       $(document).ready(function() {

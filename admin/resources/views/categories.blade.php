@@ -38,11 +38,11 @@
               <td>{{ $category->name }}</td>
               <td>{{ $category->sort_order }}</td>
               <td>{{ $category->status }}</td>
-              <td>
+              <td class="on-menu-switch">
                 @if($category->on_menu == '1')
-                <a class="btn-floating btn-large waves-effect waves-light green on-off-btn"><span>  </span></a>
+                <a data-id="{{ $category->id }}" data-value="1" class="btn-floating btn-large waves-effect waves-light green on-off-btn on-menu-change"><span>  </span></a>
                 @else
-                <a class="btn-floating btn-large waves-effect waves-light red on-off-btn"><span>  </span></a>
+                <a data-id="{{ $category->id }}" data-value="0" class="btn-floating btn-large waves-effect waves-light red on-off-btn on-menu-change"><span>  </span></a>
                 @endif
               </td>
               <td>
@@ -64,10 +64,32 @@
 
 <script type="text/javascript">
   @if(Session::has('success'))
-  swal("Yehh!", "{{ Session::get('success') }}", "success");
+    swal("Yehh!", "{{ Session::get('success') }}", "success");
   @elseif(Session::has('error'))
-  swal("Ohh!", "{{ Session::get('error') }}", "error");
+    swal("Ohh!", "{{ Session::get('error') }}", "error");
   @endif
+</script>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.on-menu-change').click(function() {
+      var id = $(this).data('id');
+      var value = $(this).data('value');
+      $.ajax({
+        url: "{{ route('ajax_request') }}",
+        type: "POST",
+        data: {'_token': '{{ csrf_token() }}', 'type': 'onMenuChange', 'id': id, 'value': value}
+      }).done(function(results) {
+        if(value == '0') {
+          $('.on-menu-switch').html('<a data-id="'+ id + '" data-value="1" class="btn-floating btn-large waves-effect waves-light green on-off-btn on-menu-change"><span>  </span></a>')
+        } else {
+          $('.on-menu-switch').html('<a data-id="'+ id + '" data-value="0" class="btn-floating btn-large waves-effect waves-light red on-off-btn on-menu-change"><span>  </span></a>')
+        }
+        console.log(results);
+      });
+    });
+  })
+
 </script>
 
 @stop
