@@ -27,11 +27,13 @@ class CatagoriesController extends Controller {
     $data =  $request->validate([
       'name' => 'required',
       'seo_url' => 'required',
-      'meta_tag_title' => 'required',
-      'img' => 'image|mimes:jpg,jpeg,png,gif'
+      'meta_tag_title' => 'required'
     ]);
 
     if ($request->hasFile('img')) {
+      $request->validate([
+		    'img' => 'image|mimes:jpg,jpeg,png,gif',
+		  ]);
       $image = $request->file('img');
       $name = $image->getClientOriginalName();
       $destinationPath = Config::get('app.image_path').'catalog/';

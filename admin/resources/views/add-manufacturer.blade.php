@@ -4,7 +4,7 @@
 <div class="container">
   <div class="row">
 
-    <form action="{{ route('add-manufacturer') }}" class="col s12" method="post">
+    <form action="{{ route('add-manufacturer') }}" class="col s12" method="post" enctype="multipart/form-data">
       @csrf
       <div class="row">
         <div class="col s12">
@@ -44,7 +44,7 @@
         <div class="input-field col s6">
           <div class="file-field input-field">
             <div class="btn">
-              <span>File</span>
+              <span>Image</span>
               <input type="file" name="image">
             </div>
             <div class="file-path-wrapper">
