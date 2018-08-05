@@ -8,7 +8,7 @@
         <div class="d-flex-space-between mb-3">
           <h5 class="card-title mt-0">Product List</h5>
 
-          <a href="{{ route('add_category') }}" class="btn waves-effect waves-light blue"><i class="material-icons left">add</i></a>
+          <a href="{{ route('add-product') }}" class="btn waves-effect waves-light blue"><i class="material-icons left">add</i></a>
         </div>
         <table class="striped centered card">
           <thead class="blue white-text">

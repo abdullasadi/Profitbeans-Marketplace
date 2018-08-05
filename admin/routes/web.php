@@ -28,5 +28,8 @@ Route::get('/add-manufacturer', 'ManufacturersController@addManufacturers')->nam
 Route::post('/add-manufacturer', 'ManufacturersController@create');
 
 Route::get('/products', 'ProductsController@index')->name('products');
+Route::get('/add-product', 'ProductsController@addProduct')->name('add-product');
+Route::post('/add-product', 'ProductsController@create');
+Route::post('/product-ajax', 'ProductsController@ajax_request')->name('product-ajax');
 
 Auth::routes();

@@ -144,7 +144,6 @@
       data: {'_token': '{{ csrf_token() }}', 'type': 'autocomplete'}
     }).done(function( results ) {
       console.log(results);
-      $(document).ready(function() {
       $('.modal').modal();
       $('select').material_select();
       var catName = [];
@@ -155,8 +154,7 @@
 
 
       $('input.autocomplete').autocomplete2({
-          data: catName,
-        });
+        data: catName,
       });
     });
 

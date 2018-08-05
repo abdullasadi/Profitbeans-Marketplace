@@ -21,10 +21,10 @@
     <nav class="blue darken-2">
       <div class="container">
         <div class="nav-wrapper">
-          <a href="#" data-activates="side-nav" class="button-collapse show-on-large ml-0">
+          <a href="#" data-activates="side-nav" class="button-collapse show-on-large mr-0">
             <i class="material-icons">menu</i>
           </a>
-          <a href="#" data-activates="side-nav" class="button-collapse show-on-large mr-2">Menu</a>
+          <a href="#" data-activates="side-nav" class="button-collapse show-on-large ml-2">Menu</a>
           <!-- Side Navigation -->
           <ul id="side-nav" class="side-nav">
             <li>
