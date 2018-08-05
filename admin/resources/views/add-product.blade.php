@@ -37,9 +37,13 @@
     </div>
     <div id="Data" class="col s12">
       <div class="row mt-3">
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input name="model" id="model" type="text" class="validate">
           <label for="model">Model</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="stock_status" id="stock_status" type="text" class="validate">
+          <label for="stock_status">Stock Status</label>
         </div>
         <div class="input-field col s6">
           <input name="upc" id="upc" type="text" class="validate">
@@ -62,9 +66,13 @@
           </select>
           <label>Tax Class</label>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s6">
           <input name="sku" id="sku" type="text" class="validate">
           <label for="sku">SKU</label>
+        </div>
+        <div class="input-field col s6">
+          <input name="cost_price" id="cost_price" type="text" class="validate">
+          <label for="cost_price">Cost Price</label>
         </div>
         <div class="input-field col s4">
           <input name="length" id="length" type="text" class="validate">
@@ -113,8 +121,8 @@
       <div class="row">
         <div class="col s12">
           <div class="input-field col s12">
-            <input name="met_tag_title" id="met_tag_title" type="text" class="validate">
-            <label for="met_tag_title">Meta Tag Title</label>
+            <input name="meta_tag_title" id="meta_tag_title" type="text" class="validate">
+            <label for="meta_tag_title">Meta Tag Title</label>
           </div>
           <div class="input-field col s12">
             <input name="meta_tag_keywords" id="meta_tag_keywords" type="text" class="validate">
