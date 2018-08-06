@@ -16,7 +16,27 @@ class CatagoriesController extends Controller {
 
   public function index() {
     $allCagetoris = Catagories::all();
-    return view('categories', ['categories' => $allCagetoris, 'title' => 'Categries']);
+    $categories = [];
+    foreach($allCagetoris as $category){
+
+      if($category->image == 'default'){
+        $image = ImgModify::resize('default.png', 35, 35);
+      }else{
+        $image = ImgModify::resize($category->image, 35, 35);
+      }
+
+      $cat = array(
+        "name" => $category->name,
+        "image" => $image,
+        "id" => $category->id,
+        "sort_order" => $category->sort_order,
+        "on_menu" => $category->on_menu,
+        "status" => $category->status,
+      );
+      array_push($categories, $cat);
+    }
+
+    return view('categories', ['categories' => $categories, 'title' => 'Categories']);
   }
 
   public function add_category() {

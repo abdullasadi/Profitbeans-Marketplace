@@ -24,22 +24,15 @@
 
           <tbody>
             @foreach($categories as $category)
-            @php
-              if($category->image == 'default'){
-                $image = ImgModify::resize('default.png', 35, 35);
-              }else{
-                $image = ImgModify::resize($category->image, 35, 35);
-              }
-            @endphp
             <tr class="less-padding-tr">
               <td>
-                <img src="{{ $image }}" alt="placholder">
+                <img src="{{ $category['image'] }}" alt="placholder">
               </td>
-              <td>{{ $category->name }}</td>
-              <td>{{ $category->sort_order }}</td>
-              <td>{{ $category->status }}</td>
-              <td class="on-menu-switch" data-id="{{ $category->id }}" data-value="{{ $category->on_menu }}">
-                @if($category->on_menu == '1')
+              <td>{{ $category['name'] }}</td>
+              <td>{{ $category['sort_order'] }}</td>
+              <td>{{ $category['status'] }}</td>
+              <td class="on-menu-switch" data-id="{{ $category['id'] }}" data-value="{{ $category['on_menu'] }}">
+                @if($category['on_menu'] == '1')
                 <a class="btn-floating btn-large waves-effect waves-light green on-off-btn on-menu-change"><span>  </span></a>
                 @else
                 <a class="btn-floating btn-large waves-effect waves-light red on-off-btn on-menu-change"><span>  </span></a>
