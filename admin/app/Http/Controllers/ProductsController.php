@@ -10,10 +10,19 @@ use App\Manufacturers;
 class ProductsController extends Controller {
   public function index() {
     $products = Products::all();
-		return view('products', ['products' => $products]);
+
+		return view('products', [
+      'products' => $products
+    ]);
 	}
   public function addProduct() {
-    return view('add-product');
+    $categories = Catagories::all();
+    $manufacturers = Manufacturers::all();
+
+    return view('add-product', [
+      'categories' => $categories,
+      'manufacturers' => $manufacturers
+    ]);
   }
   public function create(Request $request) {
     $request->all();
@@ -25,6 +34,8 @@ class ProductsController extends Controller {
       'ean' => 'required',
       'price' => 'required',
       'sku' => 'required',
+      'category' => 'required',
+      'manufacturer' => 'required'
     ]);
 
     $data = $request->all();
@@ -67,12 +78,6 @@ class ProductsController extends Controller {
   }
 
   public function ajax_request(Request $request) {
-    $rq = $request->all();
-
-    if($rq['type'] == 'manAuto') {
-      return Manufacturers::all();
-    } elseif($rq['type'] == 'catAuto') {
-      return Catagories::all();
-    }
+    return null;
   }
 }

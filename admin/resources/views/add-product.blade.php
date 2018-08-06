@@ -131,13 +131,37 @@
     </div>
     <div id="LInk" class="col s12">
       <div class="row">
-        <div class="input-field col s6">
-          <input name="category" id="category" type="text" class="validate">
-          <label for="category">Category</label>
+        <div class="input-field col s12 m6">
+          <select class="icons" name="category">
+            <option disabled selected>Choose your option</option>
+            @foreach($categories as $category)
+            @php
+              if($category->image == 'default'){
+                $image = ImgModify::resize('default.png', 35, 35);
+              }else{
+                $image = ImgModify::resize($category->image, 35, 35);
+              }
+            @endphp
+            <option value="{{ $category->id }}" data-icon="{{ $image }}" class="circle">{{ $category->name }}</option>
+            @endforeach
+          </select>
+          <label>Category</label>
         </div>
-        <div class="input-field col s6">
-          <input name="manufacturer" id="manufacturer" type="text" class="validate autocomplete">
-          <label for="manufacturer">Manufacturer</label>
+        <div class="input-field col s12 m6">
+          <select class="icons" name="manufacturer">
+            <option disabled selected>Choose your option</option>
+            @foreach($manufacturers as $manufacturer)
+            @php
+              if($manufacturer->image == 'default'){
+                $image = ImgModify::resize('default.png', 35, 35);
+              }else{
+                $image = ImgModify::resize($category->image, 35, 35);
+              }
+            @endphp
+            <option value="{{ $manufacturer->id }}" data-icon="{{ $image }}" class="circle">{{ $manufacturer->name }}</option>
+            @endforeach
+          </select>
+          <label>Images in select</label>
         </div>
       </div>
     </div>
@@ -200,43 +224,6 @@
   $(document).ready(function() {
     $('select').material_select();
     $('ul.tabs').tabs();
-
-
-    $.ajax({
-      url: "{{ route('product-ajax') }}",
-      type: "POST",
-      data: {'_token': '{{ csrf_token() }}', 'type': 'manAuto'}
-    }).done(function( results ) {
-      $('.modal').modal();
-      $('select').material_select();
-      var catName = [];
-      for(let result of results) {
-        catName.push({id:result.id, text:result.name, img: result.image});
-      }
-      // console.log(catName);
-      $('#manufacturer').autocomplete2({
-        data: catName
-      });
-    });
-
-    $.ajax({
-      url: "{{ route('product-ajax') }}",
-      type: "POST",
-      data: {'_token': '{{ csrf_token() }}', 'type': 'catAuto'}
-    }).done(function( results ) {
-      var catName = [];
-      for(let result of results) {
-        catName.push({id:result.id, text:result.name, img: result.image});
-      }
-      $('#category').autocomplete2({
-        data: catName
-      });
-    });
-
-    $('#category').focusout(function() {
-      var id = $('#category').attr('data-id');
-      alert(id)
-    });
 
 
     // Dinamically Add image input box
