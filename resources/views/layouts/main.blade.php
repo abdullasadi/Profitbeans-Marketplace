@@ -299,43 +299,43 @@
     =========================================== -->
     <!-- JQuery library
     =========================================== -->
-    <script src="js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="{{ asset('js/vendor/jquery-1.12.4.min.js') }}"></script>
 
     <!-- Bootstrap js
     =========================================== -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
     <!-- price slider js
     =========================================== -->
-    <script src="js/jquery-price-slider.js"></script>
+    <script src="{{ asset('js/jquery-price-slider.js') }}"></script>
 
     <!-- TimeCircles js
     =========================================== -->
-    <script src="js/TimeCircles.js"></script>
+    <script src="{{ asset('js/TimeCircles.js') }}"></script>
 
     <!-- scrollUp js
     =========================================== -->
-    <script src="js/jquery.easing.js"></script>
+    <script src="{{ asset('js/jquery.easing.js') }}"></script>
 
     <!-- slicknav js
     =========================================== -->
-    <script src="js/jquery.slicknav.min.js"></script>
+    <script src="{{ asset('js/jquery.slicknav.min.js') }}"></script>
 
     <!-- owl carousel js
     =========================================== -->
-    <script src="js/owl.carousel.min.js"></script>
+    <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 
     <!-- nivo.slider js
     =========================================== -->
-    <script src="lib/js/jquery.nivo.slider.js"></script>
-    <script src="lib/home.js"></script>
+    <script src="{{ asset('js/jquery.nivo.slider.js') }}"></script>
+    <script src="{{ asset('js/home.js') }}"></script>
 
     <!-- plugins js
     =========================================== -->
-    <script src="js/plugins.js"></script>
+    <script src="{{ asset('js/plugins.js') }}"></script>
 
     <!-- Main js
     =========================================== -->
-    <script src="js/main.js"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
   </body>
 </html>
