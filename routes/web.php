@@ -14,3 +14,6 @@
 Auth::routes();
 
 Route::get('/', 'FrontController@index');
+
+// Catalog Routes
+Route::get('/categories', 'Catalog\CategoriesController@index');
