@@ -127,6 +127,24 @@
           <input name="width" id="width" type="text" class="validate">
           <label for="width">Dimension(width)</label>
         </div>
+        <div class="switch col s6">
+          <span class="pr-3">On Google: </span>
+          <label>
+            Off
+            <input type="checkbox" name="on_google" value="1">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+        <div class="switch col s6">
+          <span class="pr-3">Status: </span>
+          <label>
+            Off
+            <input type="checkbox" name="status" value="1">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
       </div>
     </div>
     <div id="LInk" class="col s12">
