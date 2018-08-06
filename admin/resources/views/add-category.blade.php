@@ -3,7 +3,6 @@
 
 <div class="container">
   <div class="row">
-
     <form action="{{ route('add_category') }}" class="col s12" method="post" enctype="multipart/form-data">
       @csrf
       <div class="row">
