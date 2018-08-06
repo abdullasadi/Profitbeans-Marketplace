@@ -103,7 +103,7 @@
     </div>
     <!-- top banner area end -->
 
-    @include('inlcudes.navbar')
+    @include('includes.navbar')
 
     @yield('content')
 
