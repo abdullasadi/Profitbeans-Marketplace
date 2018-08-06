@@ -5,7 +5,6 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model {
-  public $timestamps = false;
   protected $fillable = [
     'bean', 'name', 'model', 'sku', 'price', 'cost_price', 'stock_status', 'manufacturer', 'category', 'slug',
     'upc', 'ean', 'description', 'image', 'status', 'seller_id', 'option_id', 'attribute_id',

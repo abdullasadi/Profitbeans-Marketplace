@@ -9,12 +9,14 @@ use App\Manufacturers;
 
 class ProductsController extends Controller {
   public function index() {
-		return view('products');
+    $products = Products::all();
+		return view('products', ['products' => $products]);
 	}
   public function addProduct() {
     return view('add-product');
   }
   public function create(Request $request) {
+    $request->all();
     $data = $request->validate([
       'name' => 'required',
       'description' => 'required',
@@ -29,36 +31,36 @@ class ProductsController extends Controller {
     $product = new Products();
 
     $product->bean = 'text';
-    $product->name = $data['name'];
-    $product->model = $data['model'];
-    $product->sku = $data['sku'];
-    $product->price = $data['price'];
-    $product->cost_price = $data['cost_price'];
-    $product->stock_status = $data['stock_status'];
-    $product->manufacturer = $data['manufacturer'];
-    $product->category = $data['category'];
-    $product->slug = $data['slug'];
-    $product->upc = $data['upc'];
-    $product->ean = $data['ean'];
-    $product->description = $data['description'];
-    $product->image = $data['image'];
-    $product->status = $data['status'] ? $data['status'] : '';
-    $product->seller_id = $data['seller_id'];
-    $product->option_id = $data['option_id'];
-    $product->attribute_id = $data['attribute_id'];
-    $product->on_google = $data['on_google'];
-    $product->meta_tag_title = $data['meta_tag_title'];
-    $product->meta_tag_keywords = $data['meta_tag_keywords'];
-    $product->meta_tag_description = $data['meta_tag_description'];
-    $product->tax_class = $data['tax_class'];
-    $product->length = $data['length'];
-    $product->height = $data['height'];
-    $product->width = $data['width'];
+    $product->name = $data['name'] ? $data['name'] : '';
+    $product->model = $data['model'] ? $data['model'] : '';
+    $product->sku = $data['sku'] ? $data['sku'] : '';
+    $product->price = $data['price'] ? $data['price'] : '';
+    $product->cost_price = $data['cost_price'] ? $data['cost_price'] : '';
+    $product->stock_status = $data['stock_status'] ? $data['stock_status'] : '';
+    $product->manufacturer = $data['manufacturer'] ? $data['manufacturer'] : '';
+    $product->category = $data['category'] ? $data['category'] : '';
+    $product->slug = isset($data['slug']) ? $data['slug'] : '';
+    $product->upc = $data['upc'] ? $data['upc'] : '';
+    $product->ean = $data['ean'] ? $data['ean'] : '';
+    $product->description = $data['description'] ? $data['description'] : '';
+    $product->image = $data['image'] ? $data['image'] : '';
+    $product->status = isset($data['status']) ? $data['status'] : '';
+    $product->seller_id = isset($data['seller_id']) ? $data['seller_id'] : '';
+    $product->option_id = isset($data['option_id']) ? $data['option_id'] : '';
+    $product->attribute_id = isset($data['attribute_id']) ? $data['attribute_id'] : '';
+    $product->on_google = isset($data['on_google']) ? $data['on_google'] : '';
+    $product->meta_tag_title = isset($data['meta_tag_title']) ? $data['meta_tag_title'] : '';
+    $product->meta_tag_keywords = isset($data['meta_tag_keywords']) ? $data['meta_tag_keywords'] : '';
+    $product->meta_tag_description = isset($data['meta_tag_description']) ? $data['meta_tag_description'] : '';
+    $product->tax_class = isset($data['tax_class']) ? $data['tax_class'] : '';
+    $product->length = isset($data['length']) ? $data['length'] : '';
+    $product->height = isset($data['height']) ? $data['height'] : '';
+    $product->width = isset($data['width']) ? $data['width'] : '';
 
     if ($product->save()) {
-			$request->session()->flash('success', 'Manufacturer has been added!');
+			$request->session()->flash('success', 'Product has been added!');
 		} else {
-			$request->session()->flash('error', 'Manufacturer could not add!');
+			$request->session()->flash('error', 'Product could not add!');
 		}
 
     return redirect('/products');

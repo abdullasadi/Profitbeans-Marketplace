@@ -17,55 +17,27 @@
               <th class="br-none">Product Name</th>
               <th class="br-none">Model</th>
               <th class="br-none">Price</th>
-              <th class="br-none">Quantity</th>
               <th class="br-none">Status</th>
               <th class="br-none">Actions</th>
             </tr>
           </thead>
 
           <tbody>
+            @foreach($products as $product)
             <tr class="less-padding-tr">
               <td>
                 <img src="http://via.placeholder.com/150x150" alt="placholder">
               </td>
-              <td> adad sad</td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
+              <td>{{ $product->name }}</td>
+              <td>{{ $product->model }}</td>
+              <td>{{ $product->price }}</td>
+              <td>{{ $product->stock_status }}</td>
               <td>
                 <a class="btn waves-effect waves-light blue action-btn"><i class="material-icons left">create</i></a>
                 <button class="btn waves-effect waves-light red action-btn"><i class="material-icons left">delete</i></button>
               </td>
             </tr>
-            <tr class="less-padding-tr">
-              <td>
-                <img src="http://via.placeholder.com/150x150" alt="placholder">
-              </td>
-              <td> adad sad</td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td>
-                <a class="btn waves-effect waves-light blue action-btn"><i class="material-icons left">create</i></a>
-                <button class="btn waves-effect waves-light red action-btn"><i class="material-icons left">delete</i></button>
-              </td>
-            </tr>
-            <tr class="less-padding-tr">
-              <td>
-                <img src="http://via.placeholder.com/150x150" alt="placholder">
-              </td>
-              <td> adad sad</td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td> dsad asd </td>
-              <td>
-                <a class="btn waves-effect waves-light blue action-btn"><i class="material-icons left">create</i></a>
-                <button class="btn waves-effect waves-light red action-btn"><i class="material-icons left">delete</i></button>
-              </td>
-            </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
