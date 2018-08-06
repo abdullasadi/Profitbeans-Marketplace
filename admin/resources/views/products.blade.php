@@ -10,7 +10,7 @@
 
           <a href="{{ route('add-product') }}" class="btn waves-effect waves-light blue"><i class="material-icons left">add</i></a>
         </div>
-        <table class="striped centered card">
+        <table class="striped card">
           <thead class="blue white-text">
             <tr>
               <th class="br-none">Image</th>
@@ -24,13 +24,22 @@
 
           <tbody>
             @foreach($products as $product)
+            @php
+              $images = json_decode($product->image);
+
+              if($images[0] == 'default'){
+                $image = ImgModify::resize('default.png', 35, 35);
+              }else{
+                $image = ImgModify::resize($images[0], 35, 35);
+              }
+            @endphp
             <tr class="less-padding-tr">
               <td>
-                <img src="http://via.placeholder.com/150x150" alt="placholder">
+                <img src="{{ $image }}" alt="placholder">
               </td>
               <td>{{ $product->name }}</td>
               <td>{{ $product->model }}</td>
-              <td>{{ $product->price }}</td>
+              <td>${{ $product->price }}</td>
               <td>{{ $product->stock_status }}</td>
               <td>
                 <a class="btn waves-effect waves-light blue action-btn"><i class="material-icons left">create</i></a>

@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="container">
-  <form action="{{ route('add-product') }}" method="post">
+  <form action="{{ route('add-product') }}" method="post" enctype="multipart/form-data">
   @csrf
   <div class="row">
     <div class="col s12 d-flex-space-between mt-4">
@@ -44,6 +44,10 @@
                 <strong>{{ $errors->first('description') }}</strong>
             </span>
           @endif
+        </div>
+        <div class="input-field col s12">
+          <input name="meta_tag_title" id="meta_tag_title" type="text" class="validate">
+          <label for="meta_tag_title">Meta Tag Title</label>
         </div>
       </div>
     </div>
@@ -108,10 +112,9 @@
         </div>
         <div class="input-field col s4">
           <select name="tax_class">
-            <option value="" selected>Choose your tax class</option>
-            <option value="1">---None---</option>
-            <option value="2">Taxable Goods</option>
-            <option value="3">CA Tax</option>
+            <option value="0">---None---</option>
+            <option value="1">Taxable Goods</option>
+            <option value="2">CA Tax</option>
           </select>
           <label>Tax Class</label>
         </div>
@@ -173,7 +176,7 @@
               if($manufacturer->image == 'default'){
                 $image = ImgModify::resize('default.png', 35, 35);
               }else{
-                $image = ImgModify::resize($category->image, 35, 35);
+                $image = ImgModify::resize($manufacturer->image, 35, 35);
               }
             @endphp
             <option value="{{ $manufacturer->id }}" data-icon="{{ $image }}" class="circle">{{ $manufacturer->name }}</option>
@@ -191,8 +194,13 @@
           <div class="file-field input-field">
             <div class="btn">
               <span>Image</span>
-              <input type="file" name="image" multiple>
+              <input type="file" name="image[]">
             </div>
+            @if ($errors->has('image'))
+              <span class="invalid-feedback red-text" role="alert">
+                  <strong>{{ $errors->first('image') }}</strong>
+              </span>
+            @endif
             <div class="file-path-wrapper">
               <input class="file-path validate" type="text">
             </div>
@@ -208,10 +216,6 @@
             <span><i class="material-icons">info</i></span>
              <span class="blue-text text-darken-2 mt-2px ml-1">Don't use spaces, replace spaces with - and make sure the Slug URL is globally unique or leave it empty for auto genareted Slug.</span>
            </div>
-        </div>
-        <div class="input-field col s6">
-          <input name="meta_tag_title" id="meta_tag_title" type="text" class="validate">
-          <label for="meta_tag_title">Meta Tag Title</label>
         </div>
         <div class="input-field col s6">
           <input name="slug" id="slug" type="text" class="validate">
@@ -252,7 +256,7 @@
         <div class="file-field input-field">
           <div class="btn">
             <span>Image</span>
-            <input type="file" name="image" multiple>
+            <input type="file" name="image[]">
           </div>
           <div class="file-path-wrapper">
             <input class="file-path validate" type="text">

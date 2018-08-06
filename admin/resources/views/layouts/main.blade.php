@@ -15,7 +15,7 @@
     <link type="text/css" rel="stylesheet" href="{{ asset('css/materialize.min.css') }}" media="screen,projection" />
     <link type="text/css" rel="stylesheet" href="{{ asset('css/main.css') }}" />
 
-    <title>title</title>
+    <title>{{ $title }}</title>
   </head>
   <body>
     <nav class="blue darken-2">

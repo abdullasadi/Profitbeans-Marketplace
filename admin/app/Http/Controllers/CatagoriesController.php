@@ -16,11 +16,11 @@ class CatagoriesController extends Controller {
 
   public function index() {
     $allCagetoris = Catagories::all();
-    return view('categories', ['categories' => $allCagetoris]);
+    return view('categories', ['categories' => $allCagetoris, 'title' => 'Categries']);
   }
 
   public function add_category() {
-    return view('add-category');
+    return view('add-category', ['title' => 'Add Category']);
   }
 
   public function create(Request $request) {
@@ -35,9 +35,11 @@ class CatagoriesController extends Controller {
 		    'img' => 'image|mimes:jpg,jpeg,png,gif',
 		  ]);
       $image = $request->file('img');
-      $name = $image->getClientOriginalName();
+      $name = time().'-'.uniqid(10).'-'.$image->getClientOriginalName();
       $destinationPath = Config::get('app.image_path').'catalog/';
       $image->move($destinationPath, $name);
+    }else{
+      $name = 'default';
     }
 
     $data = $request->all();

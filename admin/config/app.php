@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => 'Profitbeans Marketplace | Admin Dashboard',
 
     /*
     |--------------------------------------------------------------------------
@@ -163,6 +163,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         App\Providers\ToolsServiceProvider::class,
         App\Providers\ImgModifyProvider::class,
+        App\Providers\URLServiceProvider::class,
 
     ],
 
@@ -215,6 +216,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         'SomeExampleClass' => App\Facades\SomeExampleClass::class,
         'ImgModify' => App\Facades\ImgModify::class,
+        'URLHelper' => App\Facades\URLHelper::class,
 
     ],
 

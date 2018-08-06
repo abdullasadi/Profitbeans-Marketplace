@@ -9,12 +9,12 @@ use Config;
 class ManufacturersController extends Controller {
 	public function index() {
 		$manufacturers = Manufacturers::all();
-		return view('manufacturers', ['manufacturers' => $manufacturers]);
+		return view('manufacturers', ['manufacturers' => $manufacturers, 'title' => 'Manufacturers']);
 	}
 
 
 	public function addManufacturers() {
-		return view('add-manufacturer');
+		return view('add-manufacturer', ['title' => 'Add Manufacturer']);
 	}
 
 

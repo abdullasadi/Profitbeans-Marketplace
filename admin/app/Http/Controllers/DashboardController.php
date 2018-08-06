@@ -24,7 +24,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('dashboard');
+        return view('dashboard' , ['title' => 'Profitbeans Marketplace | Admin Dashboard']);
     }
 
     public function base(){
